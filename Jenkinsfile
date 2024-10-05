@@ -35,7 +35,9 @@ pipeline {
             input {
                 message: "Select a Eniroment For Deploying..."
                 ok "Done"
-                choice(name: 'DEPLOYMENT_SERVER', choices: ['Dev', 'Test', 'Prod'])
+                parameters{
+                    choice(name: 'DEPLOYMENT_SERVER', choices: ['Dev', 'Test', 'Prod'])
+                }
             }
             steps {
                 script {
