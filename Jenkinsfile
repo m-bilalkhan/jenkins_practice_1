@@ -33,9 +33,9 @@ pipeline {
         }
         stage('Deploy') {
             input {
-                message: "Select a Eniroment For Deploying..."
+                message "Select a Eniroment For Deploying..."
                 ok "Done"
-                parameters{
+                parameters {
                     choice(name: 'DEPLOYMENT_SERVER', choices: ['Dev', 'Test', 'Prod'])
                 }
             }
