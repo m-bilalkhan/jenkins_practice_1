@@ -32,9 +32,14 @@ pipeline {
             }
         }
         stage('Deploy') {
+            input {
+                message: "Select a Eniroment For Deploying..."
+                ok "Done"
+                choice(name: 'DEPLOYMENT_SERVER', choices: ['Dev', 'Test', 'Prod'])
+            }
             steps {
                 script {
-                    gv.deployApplication()
+                    gv.deployApplication(DEPLOYMENT_SERVER)
                 }
             }
         }
