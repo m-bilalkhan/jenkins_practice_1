@@ -9,7 +9,18 @@ pipeline {
                 }
             }
         }
+        stage('Test') {
+            steps {
+                echo "Testing ...."
+                echo "Testing Branch $BRANCH_NAME"
+            }
+        }
         stage('Build') {
+            when {
+                expression{
+                    BRANCH_NAME == "main"
+                }
+            }
             steps {
                 script {
                     gv.buildApplication()
@@ -17,6 +28,11 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                expression{
+                    BRANCH_NAME == "main"
+                }
+            }
             steps {
                 script {
                     gv.deployApplication()
