@@ -1,3 +1,4 @@
+@library("jenkins-shared-library")
 def gv //define a variable
 pipeline {
     agent any
@@ -11,8 +12,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing ...."
-                echo "Testing Branch $BRANCH_NAME"
+                script {
+                    gv.testApplication()
+                }
             }
         }
         stage('Build') {
@@ -23,7 +25,7 @@ pipeline {
             }
             steps {
                 script {
-                    gv.buildApplication()
+                    buildImage()
                 }
             }
         }
@@ -35,7 +37,7 @@ pipeline {
             }
             steps {
                 script {
-                    gv.deployApplication()
+                    deployApplication()
                 }
             }
         }
