@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                 script {
-                    buildImage()
+                    buildImage('mbilalkhan/practice-repo:2.0.0')
                 }
             }
         }
