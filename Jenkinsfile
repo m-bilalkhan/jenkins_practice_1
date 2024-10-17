@@ -1,4 +1,15 @@
-@Library("jenkins-shared-library")
+// @Library("jenkins-shared-library")
+//This above is how we import a global shared library in jenkins
+
+//If we want to use shared library but specific to a project we can use below syntax to import a library
+library identifier: 'jenkins-shared-library-project-base@main', retriever: modernSCM(
+    [
+        $class: 'GitSCMSource',
+        remote: 'https://github.com/m-bilalkhan/jenkins-shared-library-project.git'
+        // credientialsId: '' for creds
+    ]
+)
+
 def gv //define a variable
 pipeline {
     agent any
