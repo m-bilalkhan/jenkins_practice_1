@@ -14,6 +14,9 @@ library identifier: 'jenkins-shared-library-project-base@main', retriever: moder
 def gv //define a variable
 pipeline {
     agent any
+    tools {
+        nodejs 'NodeJS' // or the name you gave the NodeJS installation
+    }
     stages {
         stage("Init") {
             steps{
