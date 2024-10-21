@@ -81,8 +81,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'git config --g user.email "Jenkisuser@test.com"'
-                    sh 'git config --g user.name "Jenkis"'
+                    sh 'git config --global user.email "Jenkisuser@test.com"'
+                    sh 'git config --global user.name "Jenkis"'
 
                     sh 'git status'
                     sh 'git branch'
