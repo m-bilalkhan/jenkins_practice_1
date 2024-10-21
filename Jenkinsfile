@@ -73,5 +73,27 @@ pipeline {
                 }
             }
         }
+        stage('Commit package.json back to github') {
+            when {
+                expression{
+                    BRANCH_NAME == "main"
+                }
+            }
+            steps {
+                script {
+                    sh 'git config --g user.email "Jenkisuser@test.com"'
+                    sh 'git config --g user.name "Jenkis"'
+
+                    sh 'git status'
+                    sh 'git branch'
+                    sh 'git config --list'
+
+                    sh 'git remote set-url origin https://github.com/m-bilalkhan/jenkins_practice_1.git'
+                    sh 'git add .'
+                    sh 'git commit -m "ci: version bump"'
+                    sh 'git push origin HEAD:jenkins_practice_1'
+                }
+            }
+        }
     }
 }
