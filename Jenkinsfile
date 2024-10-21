@@ -36,10 +36,12 @@ pipeline {
                 }
             }
             steps {
-                echo "Incrementing version"
-                sh "npm version patch"
-                def version = sh(script: "grep '\"version\"' ./app/package.json | sed -E 's/.*\"([^\"]+)\".*/\\1/'", returnStdout: true).trim() 
-                env.IMAGE_NAME = "$version-$BUILD_NUMBER"
+                script {
+                    echo "Incrementing version"
+                    sh "npm version patch"
+                    def version = sh(script: "grep '\"version\"' ./app/package.json | sed -E 's/.*\"([^\"]+)\".*/\\1/'", returnStdout: true).trim() 
+                    env.IMAGE_NAME = "$version-$BUILD_NUMBER"
+                }
             }
         }
         stage('Build') {
