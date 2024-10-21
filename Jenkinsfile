@@ -29,6 +29,19 @@ pipeline {
                 }
             }
         }
+        stage('Increment Version') {
+            when {
+                expression{
+                    BRANCH_NAME == "main"
+                }
+            }
+            steps {
+                echo "Incrementing version"
+                sh "npm version patch"
+                def version = sh(script: "grep '\"version\"' ./app/package.json | sed -E 's/.*\"([^\"]+)\".*/\\1/'", returnStdout: true).trim() 
+                env.IMAGE_NAME = "$version-$BUILD_NUMBER"
+            }
+        }
         stage('Build') {
             when {
                 expression{
@@ -37,7 +50,7 @@ pipeline {
             }
             steps {
                 script {
-                    buildImage('mbilalkhan/practice-repo:2.0.0')
+                    buildImage("mbilalkhan/practice-repo:$IMAGE_NAME")
                 }
             }
         }
