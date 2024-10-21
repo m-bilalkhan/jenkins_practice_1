@@ -41,10 +41,11 @@ pipeline {
             steps {
                 script {
                     echo "Incrementing version"
-                    sh "cd app"
-                    sh "npm version patch"
-                    def version = sh(script: "grep '\"version\"' ./app/package.json | sed -E 's/.*\"([^\"]+)\".*/\\1/'", returnStdout: true).trim() 
-                    env.IMAGE_NAME = "$version-$BUILD_NUMBER"
+                    dir('app') {
+                        sh "npm version patch"
+                        def version = sh(script: "grep '\"version\"' package.json | sed -E 's/.*\"([^\"]+)\".*/\\1/'", returnStdout: true).trim() 
+                        env.IMAGE_NAME = "$version-$BUILD_NUMBER"
+                    }
                 }
             }
         }
