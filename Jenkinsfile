@@ -81,17 +81,17 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'git config --global user.email "Jenkisuser@test.com"'
-                    sh 'git config --global user.name "Jenkis"'
-
                     sh 'git status'
                     sh 'git branch'
                     sh 'git config --list'
 
-                    sh 'git remote set-url origin https://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@github.com/m-bilalkhan/jenkins_practice_1.git'
-                    sh 'git add .'
-                    sh 'git commit -m "ci: version bump"'
-                    sh 'git push origin HEAD:jenkins_practice_1'
+                    withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/m-bilalkhan/jenkins_practice_1.git HEAD:jenkins_practice_1"
+                        sh 'git add .'
+                        sh 'git commit -m "ci: version bump"'
+                        sh 'git push origin HEAD:jenkins_practice_1'
+                    }
+
                 }
             }
         }
