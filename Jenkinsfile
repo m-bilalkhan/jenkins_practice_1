@@ -88,7 +88,7 @@ pipeline {
                     sh 'git branch'
                     sh 'git config --list'
 
-                    sh 'git remote set-url origin https://github.com/m-bilalkhan/jenkins_practice_1.git'
+                    sh 'git remote set-url origin https://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@github.com/m-bilalkhan/jenkins_practice_1.git'
                     sh 'git add .'
                     sh 'git commit -m "ci: version bump"'
                     sh 'git push origin HEAD:jenkins_practice_1'
