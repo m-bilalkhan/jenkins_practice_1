@@ -89,7 +89,7 @@ pipeline {
                         sh '''git remote set-url origin https://$GIT_TOKEN@github.com/m-bilalkhan/jenkins_practice_1.git'''
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
-                        sh 'git push origin HEAD:refs/head/main'
+                        sh 'git push origin HEAD:refs/heads/main'
                     }
 
                 }
