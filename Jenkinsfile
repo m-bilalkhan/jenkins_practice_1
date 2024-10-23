@@ -85,8 +85,8 @@ pipeline {
                     sh 'git branch'
                     sh 'git config --list'
 
-                    withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/m-bilalkhan/jenkins_practice_1.git HEAD:jenkins_practice_1"
+                    withCredentials([string(credentialsId: 'github-creds', variable: 'GIT_TOKEN')]) {
+                        sh "git push https://${GIT_TOKEN}@github.com/m-bilalkhan/jenkins_practice_1.git HEAD:jenkins_practice_1"
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:jenkins_practice_1'
