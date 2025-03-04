@@ -68,7 +68,7 @@ pipeline {
                     BRANCH_NAME == "main"
                 }
             }
-            enviroment {
+            environment {
                 AWS_ACCESS_KEY_ID = credientials("jenkins_aws_access_key_id")
                 AWS_ACCESS_KEY_ID = credientials("jenkins_aws_secret_access_key")
                 TF_VAR_env_prefix = "test"
@@ -94,7 +94,7 @@ pipeline {
                     BRANCH_NAME == "main"
                 }
             }
-            enviroment {
+            environment {
                 DOCKER_CREDS = credientials("docker-hub-repo-creds")
             }
             steps {
@@ -116,6 +116,7 @@ pipeline {
                 }
             }
         }
+
         stage('Commit package.json back to github') {
             when {
                 expression{
