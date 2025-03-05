@@ -1,7 +1,7 @@
 version: "3"
 services:
   my-app:
-    image: ${docker-registry}/practice-repo:1.0
+    image: mbilalkhan/practice-repo:${IMAGE}
     ports:
       - 3000:3000
   mongodb:
