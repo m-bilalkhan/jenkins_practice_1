@@ -3,7 +3,7 @@ terraform {
   backend "s3" {
     bucket = "mycicdpipeline-practice-tf-s3-bucket"
     key = "myapp/state.tfstate"
-    region = var.region
+    region = "ap-south-1"
   }
 }
 
