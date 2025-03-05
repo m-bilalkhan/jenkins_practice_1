@@ -3,3 +3,11 @@ node_modules
 .DS_Store
 
 .idea/*
+
+
+#local .terraform dir
+terraform/.terraform/*
+
+#tf state file
+*.tfstate
+*.tfstate.*

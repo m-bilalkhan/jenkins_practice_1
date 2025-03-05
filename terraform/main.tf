@@ -1,3 +1,12 @@
+terraform {
+  required_version = ">= 0.12"
+  backend "s3" {
+    bucket = "mycicdpipeline-practice-tf-s3-bucket"
+    key = "myapp/state.tfstate"
+    region = var.region
+  }
+}
+
 provider "aws" {
   region = var.region
 }
